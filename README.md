@@ -1,6 +1,3 @@
-[![Go](https://brainnwave.com/badges/jwt-middleware/status.svg)](https://github.com/Brainnwave/jwt-middleware/actions/workflows/go.yml)
-[![Coverage](https://s3.amazonaws.com/brainnwave.assets/badges/jwt/coverage.svg)](https://github.com/Brainnwave/jwt-middleware/actions/workflows/go.yml)
-
 # Dynamic JWT Validation Middleware
 
 This is a middleware plugin for [Traefik](https://github.com/containous/traefik) with the following features:
@@ -17,15 +14,15 @@ experimental:
   plugins:
     jwt:
       moduleName: github.com/Brainnwave/jwt-middleware
-      version: v1.1.5
+      version: v1.1.7
 ```
 1b. or with command-line options:
 
 ```yaml
 command:
   ...
-  - "--experimental.plugins.jwt.modulename=github.com/Brainnwave/jwt-middleware"
-  - "--experimental.plugins.jwt.version=v1.1.5"
+  - "--experimental.plugins.jwt.modulename=github.com/tpaulus/jwt-middleware"
+  - "--experimental.plugins.jwt.version=v1.1.7"
 ```
 
 2) Configure and activate the plugin as a middleware in your dynamic traefik config:
