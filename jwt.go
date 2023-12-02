@@ -408,8 +408,7 @@ func (plugin *JWTPlugin) IsValidIssuer(issuer string) bool {
 
 // fetchKeys fetches the keys from well-known jwks endpoint for the given issuer and adds them to the key map.
 func (plugin *JWTPlugin) fetchKeys(issuer string) error {
-	url := issuer + ".well-known/jwks.json" // issuer has trailing slash
-	jwks, err := FetchJWKS(url)
+	jwks, err := FetchJWKS(issuer)
 	if err != nil {
 		return err
 	}
