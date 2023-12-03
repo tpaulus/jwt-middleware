@@ -1,5 +1,7 @@
 # Dynamic JWT Validation Middleware
 
+Forked from [Brainnwave/jwt-middleware](https://github.com/Brainnwave/jwt-middleware)
+
 This is a middleware plugin for [Traefik](https://github.com/containous/traefik) with the following features:
 * Validation of JSON Web Tokens in cookies, headers, and/or query string parameters for access control.
 * Dynamic lookup of public keys from the well-known JWKS endpoint of whitelisted issuers.
