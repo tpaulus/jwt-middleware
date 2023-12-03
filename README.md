@@ -15,8 +15,8 @@ This is a middleware plugin for [Traefik](https://github.com/containous/traefik)
 experimental:
   plugins:
     jwt:
-      moduleName: github.com/Brainnwave/jwt-middleware
-      version: v1.1.7
+      moduleName: github.com/tpaulus/jwt-middleware
+      version: v1.1.10
 ```
 1b. or with command-line options:
 
@@ -24,7 +24,7 @@ experimental:
 command:
   ...
   - "--experimental.plugins.jwt.modulename=github.com/tpaulus/jwt-middleware"
-  - "--experimental.plugins.jwt.version=v1.1.7"
+  - "--experimental.plugins.jwt.version=v1.1.10"
 ```
 
 2) Configure and activate the plugin as a middleware in your dynamic traefik config:
