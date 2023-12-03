@@ -413,18 +413,18 @@ func (plugin *JWTPlugin) fetchKeys(issuer string) error {
 		return err
 	}
 	for keyID, key := range jwks {
-		log.Printf("fetched key:%s from url:%s", keyID, url)
+		log.Printf("fetched key:%s from url:%s", keyID, issuer)
 		plugin.keys[keyID] = key
 	}
 
-	previous := plugin.issuerKeys[url]
+	previous := plugin.issuerKeys[issuer]
 	for keyID := range previous {
 		if _, ok := jwks[keyID]; !ok {
-			log.Printf("key:%s dropped by url:%s", keyID, url)
+			log.Printf("key:%s dropped by url:%s", keyID, issuer)
 			delete(plugin.keys, keyID)
 		}
 	}
-	plugin.issuerKeys[url] = jwks
+	plugin.issuerKeys[issuer] = jwks
 
 	return nil
 }
