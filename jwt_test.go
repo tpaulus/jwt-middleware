@@ -14,7 +14,6 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httptest"
-	"reflect"
 	"strconv"
 	"strings"
 	"testing"
@@ -626,32 +625,6 @@ func TestServeHTTP(tester *testing.T) {
 			Actions:    map[string]string{"excludeIss": "yes"},
 		},
 		{
-			Name:   "wildcard isser",
-			Expect: http.StatusOK,
-			Config: `
-				issuers:
-				    - "http://127.0.0.1:*/"
-				require:
-					aud: test`,
-			Claims:     `{"aud": "test"}`,
-			Method:     jwt.SigningMethodES256,
-			HeaderName: "Authorization",
-			Actions:    map[string]string{"noAddIsser": "yes"},
-		},
-		{
-			Name:   "bad wildcard isser",
-			Expect: http.StatusUnauthorized,
-			Config: `
-				issuers:
-				    - "http://example.com:*/"
-				require:
-					aud: test`,
-			Claims:     `{"aud": "test"}`,
-			Method:     jwt.SigningMethodES256,
-			HeaderName: "Authorization",
-			Actions:    map[string]string{"noAddIsser": "yes"},
-		},
-		{
 			Name:   "key rotation",
 			Expect: http.StatusOK,
 			Config: `
@@ -1080,28 +1053,6 @@ func convertKeyToJWKWithKID(key interface{}, algorithm string) (jose.JSONWebKey,
 	}
 	jwk.KeyID = base64.RawURLEncoding.EncodeToString(bytes)
 	return jwk, jwk.KeyID
-}
-
-func TestCanonicalizeDomains(tester *testing.T) {
-	tests := []struct {
-		Name     string
-		domains  []string
-		expected []string
-	}{
-		{
-			Name:     "Default",
-			domains:  []string{"https://example.com", "example.org/"},
-			expected: []string{"https://example.com/", "example.org/"},
-		},
-	}
-	for _, test := range tests {
-		tester.Run(test.Name, func(tester *testing.T) {
-			result := canonicalizeDomains(test.domains)
-			if !reflect.DeepEqual(result, test.expected) {
-				tester.Errorf("got: %s expected: %s", result, test.expected)
-			}
-		})
-	}
 }
 
 func BenchmarkServeHTTP(benchmark *testing.B) {

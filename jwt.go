@@ -124,7 +124,7 @@ func New(_ context.Context, next http.Handler, config *Config, name string) (htt
 		name:                 name,
 		parser:               jwt.NewParser(jwt.WithValidMethods(config.ValidMethods)),
 		secret:               secret,
-		issuers:              canonicalizeDomains(config.Issuers),
+		issuers:              config.Issuers,
 		require:              convertRequire(config.Require),
 		keys:                 make(map[string]interface{}),
 		issuerKeys:           make(map[string]map[string]interface{}),
@@ -371,7 +371,6 @@ func (plugin *JWTPlugin) GetKey(token *jwt.Token) (interface{}, error) {
 
 			issuer, ok := token.Claims.(jwt.MapClaims)["iss"].(string)
 			if ok {
-				issuer = canonicalizeDomain(issuer)
 				if plugin.IsValidIssuer(issuer) {
 					plugin.lock.Lock()
 					if _, ok := plugin.keys[kid.(string)]; !ok {
@@ -427,22 +426,6 @@ func (plugin *JWTPlugin) fetchKeys(issuer string) error {
 	plugin.issuerKeys[issuer] = jwks
 
 	return nil
-}
-
-// canonicalizeDomain adds a trailing slash to the domain
-func canonicalizeDomain(domain string) string {
-	if !strings.HasSuffix(domain, "/") {
-		domain += "/"
-	}
-	return domain
-}
-
-// canonicalizeDomains adds a trailing slash to all domains
-func canonicalizeDomains(domains []string) []string {
-	for index, domain := range domains {
-		domains[index] = canonicalizeDomain(domain)
-	}
-	return domains
 }
 
 // createTemplate creates a template from the given redirect string, or nil if no specified.
