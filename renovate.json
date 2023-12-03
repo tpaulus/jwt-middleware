@@ -1,6 +1,9 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:recommended",
+    "github>tpaulus/renovate-config:auto-merge-gh-actions"
+  ],
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0
 }
