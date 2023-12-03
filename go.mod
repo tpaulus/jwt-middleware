@@ -1,4 +1,4 @@
-module github.com/Brainnwave/jwt-middleware
+module github.com/tpaulus/jwt-middleware
 
 go 1.20
 
