@@ -2,7 +2,7 @@ module github.com/tpaulus/jwt-middleware
 
 go 1.20
 
-require github.com/golang-jwt/jwt/v5 v5.0.0
+require github.com/golang-jwt/jwt/v5 v5.2.0
 
 require (
 	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964
