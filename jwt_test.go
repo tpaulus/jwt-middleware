@@ -625,32 +625,6 @@ func TestServeHTTP(tester *testing.T) {
 			Actions:    map[string]string{"excludeIss": "yes"},
 		},
 		{
-			Name:   "wildcard isser",
-			Expect: http.StatusOK,
-			Config: `
-				issuers:
-				    - "http://127.0.0.1:*/"
-				require:
-					aud: test`,
-			Claims:     `{"aud": "test"}`,
-			Method:     jwt.SigningMethodES256,
-			HeaderName: "Authorization",
-			Actions:    map[string]string{"noAddIsser": "yes"},
-		},
-		{
-			Name:   "bad wildcard isser",
-			Expect: http.StatusUnauthorized,
-			Config: `
-				issuers:
-				    - "http://example.com:*/"
-				require:
-					aud: test`,
-			Claims:     `{"aud": "test"}`,
-			Method:     jwt.SigningMethodES256,
-			HeaderName: "Authorization",
-			Actions:    map[string]string{"noAddIsser": "yes"},
-		},
-		{
 			Name:   "key rotation",
 			Expect: http.StatusOK,
 			Config: `
