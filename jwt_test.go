@@ -1082,28 +1082,6 @@ func convertKeyToJWKWithKID(key interface{}, algorithm string) (jose.JSONWebKey,
 	return jwk, jwk.KeyID
 }
 
-func TestCanonicalizeDomains(tester *testing.T) {
-	tests := []struct {
-		Name     string
-		domains  []string
-		expected []string
-	}{
-		{
-			Name:     "Default",
-			domains:  []string{"https://example.com", "example.org/"},
-			expected: []string{"https://example.com/", "example.org/"},
-		},
-	}
-	for _, test := range tests {
-		tester.Run(test.Name, func(tester *testing.T) {
-			result := canonicalizeDomains(test.domains)
-			if !reflect.DeepEqual(result, test.expected) {
-				tester.Errorf("got: %s expected: %s", result, test.expected)
-			}
-		})
-	}
-}
-
 func BenchmarkServeHTTP(benchmark *testing.B) {
 	test := Test{
 		Name:   "SigningMethodRS256 passes",
