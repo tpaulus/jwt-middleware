@@ -6,6 +6,8 @@ github.com/danwakefield/fnmatch
 github.com/go-jose/go-jose/v3
 github.com/go-jose/go-jose/v3/cipher
 github.com/go-jose/go-jose/v3/json
+# github.com/go-jose/go-jose/v4 v4.0.1
+## explicit; go 1.21
 # github.com/golang-jwt/jwt/v5 v5.2.1
 ## explicit; go 1.18
 github.com/golang-jwt/jwt/v5
