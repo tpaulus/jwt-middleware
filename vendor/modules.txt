@@ -1,8 +1,8 @@
 # github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964
 ## explicit
 github.com/danwakefield/fnmatch
-# github.com/go-jose/go-jose/v4 v4.0.5
-## explicit; go 1.21
+# github.com/go-jose/go-jose/v4 v4.1.0
+## explicit; go 1.24
 github.com/go-jose/go-jose/v4
 github.com/go-jose/go-jose/v4/cipher
 github.com/go-jose/go-jose/v4/json
@@ -14,7 +14,6 @@ github.com/golang-jwt/jwt/v5
 github.com/mitchellh/mapstructure
 # golang.org/x/crypto v0.32.0
 ## explicit; go 1.20
-golang.org/x/crypto/pbkdf2
 # gopkg.in/yaml.v3 v3.0.1
 ## explicit
 gopkg.in/yaml.v3
