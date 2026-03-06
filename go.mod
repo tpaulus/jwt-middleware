@@ -2,7 +2,7 @@ module github.com/tpaulus/jwt-middleware
 
 go 1.24.0
 
-toolchain go1.26.0
+toolchain go1.26.1
 
 require (
 	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964
